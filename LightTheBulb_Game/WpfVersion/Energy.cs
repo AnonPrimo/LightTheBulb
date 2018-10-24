@@ -10,21 +10,53 @@ namespace WpfVersion
 {
     class Energy
     {
-        public int StartX { get; set; }
-        public int StartY { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
         public Ellipse Shape{ get; set; }
+        public int Speed { get; set; }
 
         ImageBrush image;
 
         public Energy()
         {
-
+            Shape = new Ellipse();
+            Shape.Height = 30;
+            Shape.Width = 30;
+            Speed = 3;
+            X = 5;
+            Y = 30;
+            Shape.Margin = new System.Windows.Thickness(X, Y, 0, 0);
+            Shape.Fill = Brushes.BlueViolet;
         }
-
-        public void Move()
+        public Energy(int x, int y) : this()
         {
-            //todo
+            X = x;
+            Y = y;
+            Shape.Margin = new System.Windows.Thickness(X, y, 0, 0);
         }
+
+
+        public void MoveRight()
+        {
+            X += Speed;
+            Shape.Margin = new System.Windows.Thickness(X, Y, 0, 0);
+        }
+        public void MoveLeft()
+        {
+            X -= Speed;
+            Shape.Margin = new System.Windows.Thickness(X, Y, 0, 0);
+        }
+        public void MoveUp()
+        {
+            Y -= Speed;
+            Shape.Margin = new System.Windows.Thickness(X, Y, 0, 0);
+        }
+        public void MoveDown()
+        {
+            Y += Speed;
+            Shape.Margin = new System.Windows.Thickness(X, Y, 0, 0);
+        }
+
         bool MiniGameCheck()
         {
             //todo

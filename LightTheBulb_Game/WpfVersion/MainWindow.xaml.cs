@@ -20,9 +20,33 @@ namespace WpfVersion
     /// </summary>
     public partial class MainWindow : Window
     {
+        Energy ball;
+
         public MainWindow()
         {
             InitializeComponent();
+            ball = new Energy();
+            canvas.Children.Add(ball.Shape);
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key) {
+                case Key.Right:
+                        ball.MoveRight();
+                    break;
+                case Key.Left:
+                    ball.MoveLeft();
+                    break;
+                case Key.Up:
+                        ball.MoveUp();
+                    break;
+                case Key.Down:
+                        ball.MoveDown();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
