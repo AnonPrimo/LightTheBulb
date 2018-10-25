@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,22 +32,34 @@ namespace WpfVersion
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.Key) {
+            switch (e.Key)
+            {
                 case Key.Right:
-                        ball.MoveRight();
+                    ball.MoveRight();
                     break;
                 case Key.Left:
                     ball.MoveLeft();
                     break;
                 case Key.Up:
-                        ball.MoveUp();
+                    ball.MoveUp();
                     break;
                 case Key.Down:
-                        ball.MoveDown();
+                    ball.MoveDown();
                     break;
                 default:
                     break;
             }
+
+             //MessageBox.Show(button.Height.ToString());
+
+
+            if (ball.MiniGameCheck(button))
+            {
+                Books books = new Books();
+                books.ShowDialog();
+
+            }
         }
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -57,9 +58,11 @@ namespace WpfVersion
             Shape.Margin = new System.Windows.Thickness(X, Y, 0, 0);
         }
 
-        bool MiniGameCheck()
+        public bool MiniGameCheck(Button b)
         {
             //todo
+            if (Shape.Margin.Left + Shape.Width == b.Margin.Left)
+                return true;
             return false;
         }
     }
