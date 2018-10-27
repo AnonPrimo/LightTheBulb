@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightTheBulb_Game", "LightT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfVersion", "WpfVersion\WpfVersion.csproj", "{4B00F3DD-44D8-4417-A7FB-240D87F5531D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp_v2", "WpfApp_v2\WpfApp_v2.csproj", "{F96F3661-C688-45D9-B1E5-9A4999A1184D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4B00F3DD-44D8-4417-A7FB-240D87F5531D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B00F3DD-44D8-4417-A7FB-240D87F5531D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B00F3DD-44D8-4417-A7FB-240D87F5531D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F96F3661-C688-45D9-B1E5-9A4999A1184D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F96F3661-C688-45D9-B1E5-9A4999A1184D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F96F3661-C688-45D9-B1E5-9A4999A1184D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F96F3661-C688-45D9-B1E5-9A4999A1184D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

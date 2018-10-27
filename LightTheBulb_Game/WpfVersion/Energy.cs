@@ -61,9 +61,15 @@ namespace WpfVersion
         public bool MiniGameCheck(Button b)
         {
             //todo
-            if (Shape.Margin.Left + Shape.Width == b.Margin.Left)
+            if (Shape.Margin.Left + Shape.Width == b.Margin.Left/* || Shape.Margin.Bottom == b.Margin.Top || Shape.Margin.Top == b.Margin.Bottom*/)
                 return true;
             return false;
+        }
+
+        public void PutBall(Button b)
+        {
+            X += (int)b.Width + (int)Shape.Width;
+            Shape.Margin = new System.Windows.Thickness(X, Y, 0, 0);
         }
     }
 }

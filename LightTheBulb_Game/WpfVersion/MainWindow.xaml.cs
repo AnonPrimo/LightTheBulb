@@ -57,7 +57,7 @@ namespace WpfVersion
             {
                 Books books = new Books();
                 books.ShowDialog();
-
+                ball.PutBall(button);
             }
         }
 
