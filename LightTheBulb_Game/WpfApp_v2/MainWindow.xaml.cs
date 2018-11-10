@@ -35,6 +35,7 @@ namespace WpfApp_v2
         public MainWindow()
         {
             InitializeComponent();
+
             controller = new Controller();
             height = this.Height / 10;
             width = this.Width / 10;
@@ -44,10 +45,18 @@ namespace WpfApp_v2
             timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
             timer.Tick += timer_Tick;
             timer.Start();
-            
+            currentI = 0;
+            currentJ = 0;
+
         }
 
+        bool Chk()
+        {
+            if (currentRect.Margin.Right >= button1.Margin.Left || currentRect.Margin.Bottom == button1.Margin.Top)
+                return true;
 
+            return false;
+        }
 
         public bool CreateField()
         {
@@ -73,15 +82,12 @@ namespace WpfApp_v2
                         canvas.Children.Add(rect);
                     }
 
-
-
                     if (controller.pole[i, j] == 2)
                     {
                         rect.Fill = Brushes.DarkSeaGreen;
                         Canvas.SetLeft(rect, j * width);
                         Canvas.SetTop(rect, i * height);
-
-
+                       
                         canvas.Children.Add(rect);
                     }
 
@@ -110,14 +116,41 @@ namespace WpfApp_v2
             //Rectangle r = canvas.Children.index as Rectangle
             (canvas.Children[index] as Rectangle).Fill = new SolidColorBrush(Color.FromRgb((byte)rand.Next(255), (byte)rand.Next(255), (byte)rand.Next(255)));
 
-            controller.Move();
+            // controller.Move();
+
+            int c = 0;
+
+            for (int i = currentI; i < controller.pole.GetLength(0); i++)
+            {
+                for (int j = currentJ; j < controller.pole.GetLength(1); j++)
+                {
+                    if(controller.pole[i, j] == 3)
+                    {
+                        currentI = i;
+                        currentJ = j;
+                    }
+
+                    if(controller.pole[i, j] == 1)
+                    {
+                        controller.pole[i, j] = 3;
+                        controller.pole[currentI, currentJ] = 2;
+                        c++;
+                    }
+
+                  if(c == 1)
+                    break;
+                }
+                if(c == 1)
+                    break;
+            }
 
             CreateField();
-
-
+            if(Chk())
+            {
+                MiniGame1 mg1 = new MiniGame1();
+                mg1.ShowDialog();
+            }
         }
-
-        
 
     }
 }
