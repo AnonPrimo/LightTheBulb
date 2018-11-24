@@ -74,6 +74,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MiniGame.cs" />
     <Compile Include="MiniGame1.xaml.cs">
       <DependentUpon>MiniGame1.xaml</DependentUpon>
     </Compile>

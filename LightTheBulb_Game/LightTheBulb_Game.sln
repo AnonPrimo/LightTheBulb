@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightTheBulb_Game", "LightTheBulb_Game\LightTheBulb_Game.csproj", "{BFFD05FD-D665-4497-8584-245B1CDCFFE2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfVersion", "WpfVersion\WpfVersion.csproj", "{4B00F3DD-44D8-4417-A7FB-240D87F5531D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp_v2", "WpfApp_v2\WpfApp_v2.csproj", "{F96F3661-C688-45D9-B1E5-9A4999A1184D}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BFFD05FD-D665-4497-8584-245B1CDCFFE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFFD05FD-D665-4497-8584-245B1CDCFFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFFD05FD-D665-4497-8584-245B1CDCFFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFFD05FD-D665-4497-8584-245B1CDCFFE2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4B00F3DD-44D8-4417-A7FB-240D87F5531D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B00F3DD-44D8-4417-A7FB-240D87F5531D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B00F3DD-44D8-4417-A7FB-240D87F5531D}.Release|Any CPU.ActiveCfg = Release|Any CPU
