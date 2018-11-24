@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_v2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Background="Black">
+        Title="MainWindow" Height="350" Width="525" Background="Black"
+        MouseDown="Window_MouseDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -13,8 +14,11 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-            <Button x:Name="button_NG" Grid.Row="1" Content="New game" Width="75" Height="30" VerticalAlignment="Bottom"/>
-            <Button x:Name="button_Play" Grid.Row="2" Content="Play" Width="75" Height="30" VerticalAlignment="Center"/>
-        <Button Name="button_Exit" Grid.Row="3" Content="Exit"  Width="75" Height="30" VerticalAlignment="Top"/>
+        
+        <Image Name="imageForMW" Grid.RowSpan="4" Source="Pictures\sheep.jpg"/>
+
+        <Button x:Name="button_NG" Grid.Row="1" Content="New game" Width="75" Height="30" VerticalAlignment="Bottom" Click="button_NG_Click"/>
+            <Button x:Name="button_ContinueG" Grid.Row="2" Content="Continue" Width="75" Height="30" VerticalAlignment="Center" Click="button_ContinueG_Click"/>
+        <Button Name="button_Exit" Grid.Row="3" Content="Exit"  Width="75" Height="30" VerticalAlignment="Top" Click="button_Exit_Click"/>
     </Grid>
 </Window>

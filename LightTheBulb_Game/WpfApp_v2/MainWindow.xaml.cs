@@ -14,143 +14,81 @@ using System.Windows.Navigation;
 using System.Drawing;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using static System.Net.Mime.MediaTypeNames;
+using System.Threading;
+using System.Media;
 
 namespace WpfApp_v2
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         Controller controller;
         DispatcherTimer timer;
-        double height;
-        double width;
-        Rectangle rect;
-        Rectangle currentRect;
-        Random rand;
-        int currentI;
-        int currentJ;
+        int currI;
+        bool btnIspr;
+        MediaPlayer mediaPlayer = new MediaPlayer();
 
         public MainWindow()
         {
             InitializeComponent();
 
             controller = new Controller();
-            height = this.Height / 10;
-            width = this.Width / 10;
-            CreateField();
-            rand = new Random();
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
             timer.Tick += timer_Tick;
-            timer.Start();
-            currentI = 0;
-            currentJ = 0;
+            currI = 0;
+            Rect();
+            btnIspr = false;
 
+            mediaPlayer.Open(new Uri(@"..\..\papa-roach_-_forever.mp3", UriKind.Relative));
+            mediaPlayer.Play();
         }
-
-        bool Chk()
-        {
-            if (currentRect.Margin.Right >= button1.Margin.Left || currentRect.Margin.Bottom == button1.Margin.Top)
-                return true;
-
-            return false;
-        }
-
-        public bool CreateField()
-        {
-            for (int i = 0; i < controller.pole.GetLength(0); i++)
-            {
-                for (int j = 0; j < controller.pole.GetLength(1); j++)
-                {
-                    rect = new Rectangle
-                    {
-                        Stroke = Brushes.Red,
-                        StrokeThickness = 0,
-                        Height = height,
-                        Width = width
-
-                    };
-
-                    if (controller.pole[i, j] == 1)
-                    {
-                        rect.Fill = Brushes.LightBlue;
-                        Canvas.SetLeft(rect, j * width);
-                        Canvas.SetTop(rect, i * height);
-
-                        canvas.Children.Add(rect);
-                    }
-
-                    if (controller.pole[i, j] == 2)
-                    {
-                        rect.Fill = Brushes.DarkSeaGreen;
-                        Canvas.SetLeft(rect, j * width);
-                        Canvas.SetTop(rect, i * height);
-                       
-                        canvas.Children.Add(rect);
-                    }
-
-                    if (controller.pole[i, j] == 3)
-                    {
-                        rect.Fill = Brushes.Crimson;
-
-                        currentI = i;
-                        currentJ = j;
-                        currentRect = rect;
-
-                        Canvas.SetLeft(rect, j * width);
-                        Canvas.SetTop(rect, i * height);
-                        canvas.Children.Add(rect);
-                    }
-
-
-                }
-            }
-            return true;
-        }
-
+        
         private void timer_Tick(object sender, EventArgs e)
         {
-            int index = canvas.Children.IndexOf(currentRect);
-            //Rectangle r = canvas.Children.index as Rectangle
-            (canvas.Children[index] as Rectangle).Fill = new SolidColorBrush(Color.FromRgb((byte)rand.Next(255), (byte)rand.Next(255), (byte)rand.Next(255)));
-
-            // controller.Move();
-
-            int c = 0;
-
-            for (int i = currentI; i < controller.pole.GetLength(0); i++)
-            {
-                for (int j = currentJ; j < controller.pole.GetLength(1); j++)
-                {
-                    if(controller.pole[i, j] == 3)
-                    {
-                        currentI = i;
-                        currentJ = j;
-                    }
-
-                    if(controller.pole[i, j] == 1)
-                    {
-                        controller.pole[i, j] = 3;
-                        controller.pole[currentI, currentJ] = 2;
-                        c++;
-                    }
-
-                  if(c == 1)
-                    break;
-                }
-                if(c == 1)
-                    break;
-            }
-
-            CreateField();
-            if(Chk())
-            {
-                MiniGame1 mg1 = new MiniGame1();
-                mg1.ShowDialog();
-            }
+            
+           
         }
 
+        private void button_NG_Click(object sender, RoutedEventArgs e)
+        {
+            button_NG.Visibility = Visibility.Hidden;
+            button_ContinueG.Visibility = Visibility.Hidden;
+            button_Exit.Visibility = Visibility.Hidden;
+
+            controller.NewGame();
+
+            
+            btnIspr = true;
+            Thread.Sleep(500);
+            timer.Start();
+
+        }
+
+        private void button_ContinueG_Click(object sender, RoutedEventArgs e)
+        {
+            controller.ContinueGame();
+        }
+
+
+        void Rect()
+        {
+
+        }
+
+        private void button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            //this.Close();
+            Environment.Exit(1);
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+          
+            imageForMW.Source = controller.allBitmaps[currI];
+            if (btnIspr)
+            if (currI < 4)
+                currI++;
+        }
     }
 }

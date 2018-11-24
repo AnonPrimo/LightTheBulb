@@ -8,7 +8,7 @@ namespace WpfApp_v2
 {
     class PathPlayer
     {
-       public int I { get; set; }
+        public int I { get; set; }
         public int J { get; set; }
         public int Value { get; set; }
 
