@@ -26,7 +26,7 @@ namespace WpfApp_v2
         DispatcherTimer timer;
         int currI;
         bool btnIspr;
-        MediaPlayer mediaPlayer = new MediaPlayer();
+        MediaPlayer mediaPlayer;
 
         public MainWindow()
         {
@@ -37,9 +37,8 @@ namespace WpfApp_v2
             timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
             timer.Tick += timer_Tick;
             currI = 0;
-            Rect();
             btnIspr = false;
-
+            mediaPlayer = new MediaPlayer();
             mediaPlayer.Open(new Uri(@"..\..\papa-roach_-_forever.mp3", UriKind.Relative));
             mediaPlayer.Play();
            
@@ -47,8 +46,7 @@ namespace WpfApp_v2
         
         private void timer_Tick(object sender, EventArgs e)
         {
-            
-           
+
         }
 
         private void button_NG_Click(object sender, RoutedEventArgs e)
@@ -59,7 +57,6 @@ namespace WpfApp_v2
 
             controller.NewGame();
 
-            
             btnIspr = true;
             Thread.Sleep(500);
             timer.Start();
@@ -70,23 +67,16 @@ namespace WpfApp_v2
         {
             controller.ContinueGame();
         }
-
-
-        void Rect()
-        {
-
-        }
+        
 
         private void button_Exit_Click(object sender, RoutedEventArgs e)
         {
-            //this.Close();
             Environment.Exit(1);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-          
-            imageForMW.Source = controller.allBitmaps[currI];
+            imageForMW.Source = controller.storyBitmaps[currI];
             if (btnIspr)
             if (currI < 4)
                 currI++;
