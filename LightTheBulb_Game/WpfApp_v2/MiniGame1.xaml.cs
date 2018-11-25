@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfAnimatedGif;
 
 namespace WpfApp_v2
 {
@@ -29,21 +30,45 @@ namespace WpfApp_v2
             this.Width = image.Width;
             this.Height = image.Height;
 
-            //Image im = new Image();
-            //im.Source = b;
-            //canvas.Children.Add(im);
             if (image != null)
             {
-                game = new MiniGame(image, 4, 4);
+                game = new MiniGame(image, 2, 2);
                 game.GameCanvas = canvas;
                 game.fieldFill();
                 //game.fieldFilltest();
             }
+            
         }
 
         public MiniGame1(BitmapImage b) : this(){
             image = b;
             
+        }
+
+        private void generateFirework(double x, double y)
+        {
+            Image imWindow = new Image();
+            var im = new BitmapImage();
+            im.BeginInit();
+            im.UriSource = new Uri("../../Pictures/firework1.gif", UriKind.Relative);
+            im.EndInit();
+            ImageBehavior.SetAnimatedSource(imWindow, im);
+            canvas.Children.Add(imWindow);
+
+            Canvas.SetLeft(imWindow, x);
+            Canvas.SetTop(imWindow, y);
+            
+        }
+
+        private void canvas_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (game.ImageCheck())
+            {
+                game.StopRotate();
+
+                Point pt = e.GetPosition((UIElement)sender);
+                generateFirework(pt.X, pt.Y);
+            }
         }
     }
 }

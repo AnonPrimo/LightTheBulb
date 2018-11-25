@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MiniGame1" Height="500" Width="700">
     <Grid>
-        <Canvas Name="canvas">
+        <Canvas Name="canvas" MouseDown="canvas_MouseDown">
             
         </Canvas>
     </Grid>

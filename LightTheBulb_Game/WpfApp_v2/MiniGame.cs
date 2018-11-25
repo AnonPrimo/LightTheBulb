@@ -26,31 +26,52 @@ namespace WpfApp_v2
         //test
         public void fieldFilltest()
         {
-            int cw, ch;
+            int cw, ch,cwCanvas, chCanvas;
             cw = (int)(image.PixelWidth / w);
             ch = (int)(image.PixelHeight / h);
+            cwCanvas = (int)(image.Width / w);
+            chCanvas = (int)(image.Height / h);
+
             System.Diagnostics.Debug.WriteLine("w = {0}, h = {1}",cw,ch);
 
             field = new RectangleImage[w, h];
-            field[0, 0] = new RectangleImage(new CroppedBitmap(image, new System.Windows.Int32Rect(0, 0, cw*2,ch*4)));
 
-            GameCanvas.Children.Add(field[0, 0].Rect);
-            System.Windows.Controls.Canvas.SetLeft(field[0, 0].Rect, image.Width/w*0);
-            System.Windows.Controls.Canvas.SetTop(field[0, 0].Rect, image.Height/h*0);
 
-            field[0, 1] = new RectangleImage(new CroppedBitmap(image, new System.Windows.Int32Rect(cw * 2, 0, cw * 2, ch * 4)));
+
+            field[0, 0] = new RectangleImage(new CroppedBitmap(image, new System.Windows.Int32Rect(0, 0, cw*2,ch*2)));
+
+           GameCanvas.Children.Add(field[0, 0].Rect);
+           System.Windows.Controls.Canvas.SetLeft(field[0, 0].Rect, 0);
+           System.Windows.Controls.Canvas.SetTop(field[0, 0].Rect, 0);
+
+            field[0, 1] = new RectangleImage(new CroppedBitmap(image, new System.Windows.Int32Rect(cw * 2, ch*2 , cw * 2, ch * 2)));
 
             GameCanvas.Children.Add(field[0, 1].Rect);
-            System.Windows.Controls.Canvas.SetLeft(field[0, 1].Rect, image.Width / w * 2);
-            System.Windows.Controls.Canvas.SetTop(field[0, 1].Rect, image.Height / h * 0);
+            System.Windows.Controls.Canvas.SetLeft(field[0, 1].Rect, cwCanvas * 2);
+            System.Windows.Controls.Canvas.SetTop(field[0, 1].Rect,chCanvas * 2);
+
+
+
+            //GameCanvas.Children.Add(field[0, 0].Rect);
+            //System.Windows.Controls.Canvas.SetLeft(field[0, 0].Rect, image.Width/w*0);
+            //System.Windows.Controls.Canvas.SetTop(field[0, 0].Rect, image.Height/h*0);
+
+            //field[0, 1] = new RectangleImage(new CroppedBitmap(image, new System.Windows.Int32Rect(cw * 2, 0, cw * 2, ch * 4)));
+
+            //GameCanvas.Children.Add(field[0, 1].Rect);
+            //System.Windows.Controls.Canvas.SetLeft(field[0, 1].Rect, image.Width / w * 2);
+            //System.Windows.Controls.Canvas.SetTop(field[0, 1].Rect, image.Height / h * 0);
         }
 
 
         public void fieldFill()
         {
-            int cw, ch;
+            int cw, ch, cwCanvas, chCanvas;
             cw = (int)(image.PixelWidth / w);
             ch = (int)(image.PixelHeight / h);
+
+            cwCanvas = (int)(image.Width / w)+1;
+            chCanvas = (int)(image.Height / h)+1;
 
             field = new RectangleImage[w, h];
             for (int i = 0; i < w; i++)
@@ -59,11 +80,11 @@ namespace WpfApp_v2
                 {
                     field[i, j] = new RectangleImage(new CroppedBitmap(image, new System.Windows.Int32Rect(j * cw, i * ch, cw, ch)));
                     GameCanvas.Children.Add(field[i, j].Rect);
-                    //System.Windows.Controls.Canvas.SetLeft(field[i, j].Rect, j * cw);
-                    //System.Windows.Controls.Canvas.SetTop(field[i, j].Rect, i * ch);
+                   
+                    field[i, j].Rotate(new Random((int)DateTime.Now.Ticks).Next(0,4)*90);
 
-                    System.Windows.Controls.Canvas.SetLeft(field[i, j].Rect, j * image.Width/w);
-                    System.Windows.Controls.Canvas.SetTop(field[i, j].Rect, i * image.Height/h);
+                    System.Windows.Controls.Canvas.SetLeft(field[i, j].Rect, j * cwCanvas);
+                    System.Windows.Controls.Canvas.SetTop(field[i, j].Rect, i * chCanvas);
                 }
             }
         }
@@ -79,21 +100,15 @@ namespace WpfApp_v2
             return true;
         }
 
-        public void RotateImage()
+        public bool StopRotate()
         {
-
+            for (int i = 0; i < w; i++)
+            {
+                for (int j = 0; j < h; j++)
+                    field[i, j].DisableRect();
+            }
+            return true;
         }
-
-        //rectangle rotate
-        /*private void Rect_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            double oldValue = 0; double newValue = 30;
-            Rectangle current = (sender as Rectangle);
-            angle += 90;
-            RotateTransform rotate = new RotateTransform(angle, current.Width / 2, current.Height / 2);
-            current.RenderTransform = rotate;
-        }*/
-
 
     }
 }

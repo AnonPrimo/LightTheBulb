@@ -21,9 +21,11 @@ namespace WpfApp_v2
             Angle = 0;
             Image = im;
             Rect = new Rectangle();
+            Rect.MouseDown += Rect_MouseDown;
             Rect.Height = im.Height;
             Rect.Width = im.Width;
             Rect.Fill = new ImageBrush(im);
+
         }
 
         public void Rotate(int angle)
@@ -32,5 +34,26 @@ namespace WpfApp_v2
             RotateTransform rotate = new RotateTransform(angle, Rect.Width / 2, Rect.Height / 2);
             Rect.RenderTransform = rotate;
         }
+
+        //rectangle rotate
+        private void Rect_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Rectangle current = (sender as Rectangle);
+            Angle += 90;
+            RotateTransform rotate = new RotateTransform(Angle, current.Width / 2, current.Height / 2);
+            current.RenderTransform = rotate;
+
+            if (Angle == 360)
+                Angle = 0;
+
+           // System.Diagnostics.Debug.WriteLine("angle = {0}", Angle);
+        }
+        
+        public void DisableRect()
+        {
+            if (Angle == 0)
+                Rect.IsEnabled = false;
+        }
+
     }
 }
