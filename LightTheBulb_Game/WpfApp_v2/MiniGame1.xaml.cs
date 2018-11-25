@@ -20,23 +20,30 @@ namespace WpfApp_v2
     public partial class MiniGame1 : Window
     {
         MiniGame game;
+        BitmapImage image;
 
         public MiniGame1()
         {
             InitializeComponent();
-            BitmapImage b = new BitmapImage(new Uri("../../cat.jpg", UriKind.Relative));
-            this.Width = b.Width;
-            this.Height = b.Height;
+            image = new BitmapImage(new Uri("../../cat.jpg", UriKind.Relative));
+            this.Width = image.Width;
+            this.Height = image.Height;
 
             //Image im = new Image();
             //im.Source = b;
             //canvas.Children.Add(im);
+            if (image != null)
+            {
+                game = new MiniGame(image, 4, 4);
+                game.GameCanvas = canvas;
+                game.fieldFill();
+                //game.fieldFilltest();
+            }
+        }
 
-            game = new MiniGame(b, 4, 4);
-            game.GameCanvas = canvas;
-             game.fieldFill();
-            //game.fieldFilltest();
-
+        public MiniGame1(BitmapImage b) : this(){
+            image = b;
+            
         }
     }
 }
