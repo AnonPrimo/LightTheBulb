@@ -55,9 +55,11 @@ namespace WpfApp_v2
             ImageBehavior.SetAnimatedSource(imWindow, im);
             canvas.Children.Add(imWindow);
 
-            Canvas.SetLeft(imWindow, x);
-            Canvas.SetTop(imWindow, y);
-            
+            double www = 400;
+            double hhh = 390;
+            Canvas.SetLeft(imWindow, x-www / 2);
+            Canvas.SetTop(imWindow, y-hhh / 2);
+
         }
 
         private void canvas_MouseDown(object sender, MouseButtonEventArgs e)
