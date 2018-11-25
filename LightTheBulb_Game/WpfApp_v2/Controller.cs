@@ -5,67 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace WpfApp_v2
 {
     class Controller
     {
-        // List<PathPlayer> pathPlayer;
-
-        // public int[,] pole = {
-        // {0,0,3,0,0,0,0,0,0,0},
-        // {0,0,1,0,0,0,0,0,0,0},
-        // {0,0,1,1,0,0,0,0,0,0},
-        // {0,0,0,1,1,0,0,0,0,0},
-        // {0,0,0,0,1,0,0,0,0,0},
-        // {0,0,0,0,1,0,0,0,0,0},
-        // {0,0,0,0,1,1,0,0,0,0},
-        // {0,0,0,0,0,1,1,1,0,0},
-        // {0,0,0,0,0,0,0,1,0,0},
-        // {0,0,0,0,0,0,0,1,1,1}
-        // };
-        // public Controller()
-        // {
-        //     pathPlayer = new List<PathPlayer>();
-        //     for (int i = 0; i < pole.GetLength(0); i++)
-        //     {
-        //         for (int j = 0; j < pole.GetLength(1); j++)
-        //         {
-        //             if (pole[i, j] != 0)
-        //             {
-        //                 pathPlayer.Add(new PathPlayer(i, j, pole[i, j]));
-        //             }
-        //         }
-        //     }
-        // }
-        //public bool Move()
-        // {
-
-        //     foreach (var item in pathPlayer)
-        //     {
-        //         if (item.Value == 3)
-        //         {
-        //             pole[item.I, item.J] = 2;
-        //             continue;
-        //         }
-        //         if (item.Value == 1)
-        //         {
-        //             pole[item.I, item.J] = 3;
-        //             return true; 
-        //         }
-        //     }
-        //     return false;
-        // }
-
+        public BitmapImage startedBitmap;
         public BitmapImage[] storyBitmaps;
         public BitmapImage[] gameBitmaps;
         private int idRoom;
-
 
         public Controller()
         {
             storyBitmaps = new BitmapImage[5];
             gameBitmaps = new BitmapImage[1];
+            startedBitmap = new BitmapImage();
+            startedBitmap.BeginInit();
+            startedBitmap.UriSource = new Uri(@"..\..\Pictures\sheep.jpg", UriKind.Relative);
+            startedBitmap.EndInit();
             storyBitmapInit();
             gameBitmapInit();
         }
@@ -91,26 +50,33 @@ namespace WpfApp_v2
         {
             gameBitmaps[0] = new BitmapImage();
             gameBitmaps[0].BeginInit();
-            gameBitmaps[0].UriSource = new Uri(@"..\..\Pictures\sheep.png", UriKind.Relative);
+            gameBitmaps[0].UriSource = new Uri(@"..\..\cat.jpg", UriKind.Relative);
             gameBitmaps[0].EndInit();
         }
 
-        public void NewGame()
+        public void NewGame(MainWindow mw)
         {
             idRoom = 0;
-
+            MiniGame1 mg = new MiniGame1(gameBitmaps[idRoom]);
+            mw.Hide();
+            mg.ShowDialog();
+            mw.Show();
         }
 
-        public void ContinueGame()
+        public void ContinueGame(MainWindow mw)
         {
             idRoom = 0;
-            NewMiniGame();
+            
+            mw.button_NG.Visibility = Visibility.Hidden;
+            mw.button_ContinueG.Visibility = Visibility.Hidden;
+            mw.button_Exit.Visibility = Visibility.Hidden;
+            mw.imageForMW.Source = gameBitmaps[idRoom];
         }
 
         public void NewMiniGame()
         {
-            MiniGame mg = new MiniGame(gameBitmaps[idRoom], 4, 4);
-            mg.fieldFill();
+           
+           
         }
 
         public void SaveGame()

@@ -55,17 +55,14 @@ namespace WpfApp_v2
             button_ContinueG.Visibility = Visibility.Hidden;
             button_Exit.Visibility = Visibility.Hidden;
 
-            controller.NewGame();
-
             btnIspr = true;
             Thread.Sleep(500);
             timer.Start();
-
         }
 
         private void button_ContinueG_Click(object sender, RoutedEventArgs e)
         {
-            controller.ContinueGame();
+            controller.ContinueGame(this);
         }
         
 
@@ -78,8 +75,17 @@ namespace WpfApp_v2
         {
             imageForMW.Source = controller.storyBitmaps[currI];
             if (btnIspr)
-            if (currI < 4)
-                currI++;
+                if (currI < 4)
+                    currI++;
+                else
+                {
+                    controller.NewGame(this);
+                    button_NG.Visibility = Visibility.Visible;
+                    button_ContinueG.Visibility = Visibility.Visible;
+                    button_Exit.Visibility = Visibility.Visible;
+                    imageForMW.Source = controller.startedBitmap;
+                    currI = 0;
+                }
         }
     }
 }
