@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_v2"
         mc:Ignorable="d"
-        Title="MiniGame1" Height="300" Width="300">
+        Title="MiniGame1" Height="400" Width="600">
     <Grid>
         <Canvas Name="canvas">
             

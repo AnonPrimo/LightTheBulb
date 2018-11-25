@@ -25,7 +25,13 @@ namespace WpfApp_v2
         {
             InitializeComponent();
             BitmapImage b = new BitmapImage(new Uri("../../cat.jpg", UriKind.Relative));
-            game = new MiniGame(b, 4,4);
+            this.Width = b.PixelWidth;
+            this.Height = b.PixelHeight;
+
+            game = new MiniGame(b, 5, 5);
+            game.GameCanvas = canvas;
+            game.fieldFill();
+
         }
     }
 }

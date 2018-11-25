@@ -10,27 +10,33 @@ namespace WpfApp_v2
 {
     public class MiniGame
     {
+        public System.Windows.Controls.Canvas GameCanvas { get; set; }
         BitmapImage image;
         RectangleImage[,] field;
         int w, h;
-        int Angle;
 
         public MiniGame(BitmapImage im, int x, int y)
         {
             w = x;
             h = y;
             image = im;
-            Angle = 90;
         }
 
-        private void imageCut()
-        {        
+        public void fieldFill()
+        {
+            int cw, ch;
+            cw = image.PixelWidth / w;
+            ch = image.PixelHeight / h;
+
             field = new RectangleImage[w, h];
             for (int i = 0; i < w; i++)
             {
-                for(int j = 0; j < h; j++)
+                for (int j = 0; j < h; j++)
                 {
-                    field[i, j] = new RectangleImage(new CroppedBitmap(image, new System.Windows.Int32Rect(j+w, i+h, (int)image.Width/w, (int)image.Height)), Angle);
+                    field[i, j] = new RectangleImage(new CroppedBitmap(image, new System.Windows.Int32Rect(j * cw, i * ch, cw, ch)));
+                    GameCanvas.Children.Add(field[i, j].Rect);
+                    System.Windows.Controls.Canvas.SetLeft(field[i, j].Rect, j * cw);
+                    System.Windows.Controls.Canvas.SetTop(field[i, j].Rect, i * ch);
                 }
             }
         }

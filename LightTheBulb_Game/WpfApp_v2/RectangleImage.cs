@@ -13,20 +13,23 @@ namespace WpfApp_v2
     class RectangleImage
     {
         public Rectangle Rect { get; set; }
-        public ImageBrush Image { get; }
-        public int Angle { get; set;}
+        public CroppedBitmap Image { get; set; }
+        public int Angle { get; set; }
 
-        public RectangleImage(CroppedBitmap im, int angle)
+        public RectangleImage(CroppedBitmap im)
         {
-            Image.ImageSource = im;
-            Angle = angle;
+            Angle = 0;
+            Image = im;
             Rect = new Rectangle();
+            Rect.Height = im.Height;
+            Rect.Width = im.Width;
             Rect.Fill = new ImageBrush(im);
         }
 
-        public void Rotate()
+        public void Rotate(int angle)
         {
-            RotateTransform rotate = new RotateTransform(Angle, Rect.Width / 2, Rect.Height / 2);
+            Angle = angle;
+            RotateTransform rotate = new RotateTransform(angle, Rect.Width / 2, Rect.Height / 2);
             Rect.RenderTransform = rotate;
         }
     }
