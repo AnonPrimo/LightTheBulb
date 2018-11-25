@@ -19,9 +19,19 @@ namespace WpfApp_v2
     /// </summary>
     public partial class MiniGame1 : Window
     {
+        MiniGame game;
+
         public MiniGame1()
         {
             InitializeComponent();
+            BitmapImage b = new BitmapImage(new Uri("../../cat.jpg", UriKind.Relative));
+            this.Width = b.PixelWidth;
+            this.Height = b.PixelHeight;
+
+            game = new MiniGame(b, 5, 5);
+            game.GameCanvas = canvas;
+            game.fieldFill();
+
         }
     }
 }
