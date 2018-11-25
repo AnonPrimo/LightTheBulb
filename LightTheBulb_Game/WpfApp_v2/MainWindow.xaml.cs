@@ -42,6 +42,7 @@ namespace WpfApp_v2
 
             mediaPlayer.Open(new Uri(@"..\..\papa-roach_-_forever.mp3", UriKind.Relative));
             mediaPlayer.Play();
+           
         }
         
         private void timer_Tick(object sender, EventArgs e)
