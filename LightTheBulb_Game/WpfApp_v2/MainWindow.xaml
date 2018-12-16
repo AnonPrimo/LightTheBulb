@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WpfApp_v2"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" Background="Black"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

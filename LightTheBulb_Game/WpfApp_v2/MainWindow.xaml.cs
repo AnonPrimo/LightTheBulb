@@ -73,19 +73,23 @@ namespace WpfApp_v2
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            imageForMW.Source = controller.storyBitmaps[currI];
-            if (btnIspr)
-                if (currI < 4)
-                    currI++;
-                else
-                {
+            
+            if (btnIspr && currI < 5)
+            {
+                imageForMW.Source = controller.storyBitmaps[currI];
+                currI++;
+            }
+            else
+            {
+                if(currI == 5)
                     controller.NewGame(this);
-                    button_NG.Visibility = Visibility.Visible;
-                    button_ContinueG.Visibility = Visibility.Visible;
-                    button_Exit.Visibility = Visibility.Visible;
-                    imageForMW.Source = controller.startedBitmap;
-                    currI = 0;
-                }
+                button_NG.Visibility = Visibility.Visible;
+                button_ContinueG.Visibility = Visibility.Visible;
+                button_Exit.Visibility = Visibility.Visible;
+                imageForMW.Source = controller.startedBitmap;
+                currI = 0;
+                btnIspr = false;
+            }
         }
     }
 }

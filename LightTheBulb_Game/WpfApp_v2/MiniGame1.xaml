@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_v2"
         mc:Ignorable="d"
-        Title="MiniGame1" Height="500" Width="700">
+        Title="MiniGame1" Height="500" Width="700"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Canvas Name="canvas" MouseDown="canvas_MouseDown">
             

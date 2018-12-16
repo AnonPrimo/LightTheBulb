@@ -23,10 +23,10 @@ namespace WpfApp_v2
         MiniGame game;
         BitmapImage image;
 
-        public MiniGame1()
+        public MiniGame1(BitmapImage b)
         {
             InitializeComponent();
-            image = new BitmapImage(new Uri("../../cat.jpg", UriKind.Relative));
+            image = b;//new BitmapImage(new Uri("../../cat.jpg", UriKind.Relative));
             this.Width = image.Width;
             this.Height = image.Height;
 
@@ -40,10 +40,8 @@ namespace WpfApp_v2
             
         }
 
-        public MiniGame1(BitmapImage b) : this(){
-            image = b;
-            
-        }
+        //public MiniGame1() : this(){
+        //    image = b; }
 
         private void generateFirework(double x, double y)
         {

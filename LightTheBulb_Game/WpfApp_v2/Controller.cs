@@ -66,11 +66,14 @@ namespace WpfApp_v2
         public void ContinueGame(MainWindow mw)
         {
             idRoom = 0;
-            
-            mw.button_NG.Visibility = Visibility.Hidden;
-            mw.button_ContinueG.Visibility = Visibility.Hidden;
-            mw.button_Exit.Visibility = Visibility.Hidden;
-            mw.imageForMW.Source = gameBitmaps[idRoom];
+            MiniGame1 mg = new MiniGame1(gameBitmaps[idRoom]);
+            mw.Hide();
+            mg.ShowDialog();
+            mw.Show();
+            //mw.button_NG.Visibility = Visibility.Hidden;
+            //mw.button_ContinueG.Visibility = Visibility.Hidden;
+            //mw.button_Exit.Visibility = Visibility.Hidden;
+            //mw.imageForMW.Source = gameBitmaps[idRoom];
         }
 
         public void NewMiniGame()
