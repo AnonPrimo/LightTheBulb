@@ -122,9 +122,12 @@
     <Resource Include="Pictures\sheep.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Pictures\funnyOrange.gif" />
+    <Resource Include="square.png" />
     <Resource Include="Pictures\firework1.gif" />
     <Resource Include="Pictures\firework2.gif" />
     <Resource Include="cat.jpg" />
+    <Resource Include="cat2.jpg" />
     <Content Include="papa-roach_-_forever.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

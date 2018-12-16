@@ -22,22 +22,19 @@ namespace WpfApp_v2
             image = im;
         }
 
-
         //test
         public void fieldFilltest()
         {
-            int cw, ch,cwCanvas, chCanvas;
+            int cw, ch, cwCanvas, chCanvas;
             cw = (int)(image.PixelWidth / w);
             ch = (int)(image.PixelHeight / h);
             cwCanvas = (int)(image.Width / w);
             chCanvas = (int)(image.Height / h);
-
+            
             System.Diagnostics.Debug.WriteLine("w = {0}, h = {1}",cw,ch);
 
             field = new RectangleImage[w, h];
-
-
-
+            
             field[0, 0] = new RectangleImage(new CroppedBitmap(image, new System.Windows.Int32Rect(0, 0, cw*2,ch*2)));
 
            GameCanvas.Children.Add(field[0, 0].Rect);
@@ -50,7 +47,7 @@ namespace WpfApp_v2
             System.Windows.Controls.Canvas.SetLeft(field[0, 1].Rect, cwCanvas * 2);
             System.Windows.Controls.Canvas.SetTop(field[0, 1].Rect,chCanvas * 2);
 
-
+            
 
             //GameCanvas.Children.Add(field[0, 0].Rect);
             //System.Windows.Controls.Canvas.SetLeft(field[0, 0].Rect, image.Width/w*0);
@@ -107,8 +104,14 @@ namespace WpfApp_v2
                 for (int j = 0; j < h; j++)
                     field[i, j].DisableRect();
             }
+
             return true;
         }
 
+
+        public void DelCan()
+        {
+            GameCanvas.Children.Clear();
+        }
     }
 }

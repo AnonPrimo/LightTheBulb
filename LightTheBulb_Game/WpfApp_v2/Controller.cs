@@ -15,18 +15,19 @@ namespace WpfApp_v2
         public BitmapImage startedBitmap;
         public BitmapImage[] storyBitmaps;
         public BitmapImage[] gameBitmaps;
-        private int idRoom;
+        public static int idRoom;
 
         public Controller()
         {
             storyBitmaps = new BitmapImage[5];
-            gameBitmaps = new BitmapImage[1];
+            gameBitmaps = new BitmapImage[5];
             startedBitmap = new BitmapImage();
             startedBitmap.BeginInit();
             startedBitmap.UriSource = new Uri(@"..\..\Pictures\sheep.jpg", UriKind.Relative);
             startedBitmap.EndInit();
             storyBitmapInit();
             gameBitmapInit();
+            idRoom = 0;
         }
 
         public void storyBitmapInit()
@@ -34,7 +35,7 @@ namespace WpfApp_v2
             for (int i = 0; i < 5; i++)
             {
                 storyBitmaps[i] = new BitmapImage();
-            storyBitmaps[i].BeginInit();
+                storyBitmaps[i].BeginInit();
             }
             storyBitmaps[0].UriSource = new Uri(@"..\..\Pictures\sheep1.png", UriKind.Relative);
             storyBitmaps[1].UriSource = new Uri(@"..\..\Pictures\sheep2.png", UriKind.Relative);
@@ -48,32 +49,35 @@ namespace WpfApp_v2
 
         public void gameBitmapInit()
         {
-            gameBitmaps[0] = new BitmapImage();
-            gameBitmaps[0].BeginInit();
-            gameBitmaps[0].UriSource = new Uri(@"..\..\cat.jpg", UriKind.Relative);
-            gameBitmaps[0].EndInit();
+            for (int i = 0; i < 5; i++)
+            {
+                gameBitmaps[i] = new BitmapImage();
+                gameBitmaps[i].BeginInit();
+            }
+            gameBitmaps[0].UriSource = new Uri(@"..\..\Pictures\sheep1.png", UriKind.Relative);
+            gameBitmaps[1].UriSource = new Uri(@"..\..\Pictures\sheep2.png", UriKind.Relative);
+            gameBitmaps[2].UriSource = new Uri(@"..\..\Pictures\sheep3.png", UriKind.Relative);
+            gameBitmaps[3].UriSource = new Uri(@"..\..\Pictures\sheep4.png", UriKind.Relative);
+            gameBitmaps[4].UriSource = new Uri(@"..\..\Pictures\sheep5.png", UriKind.Relative);
+            for (int i = 0; i < 5; ++i)
+                gameBitmaps[i].EndInit();
         }
 
-        public void NewGame(MainWindow mw)
+        public void NewGame(Window mw)
         {
-            idRoom = 0;
             MiniGame1 mg = new MiniGame1(gameBitmaps[idRoom]);
             mw.Hide();
             mg.ShowDialog();
             mw.Show();
         }
 
-        public void ContinueGame(MainWindow mw)
+        public void ContinueGame(Window mw)
         {
-            idRoom = 0;
             MiniGame1 mg = new MiniGame1(gameBitmaps[idRoom]);
+            idRoom++;
             mw.Hide();
             mg.ShowDialog();
             mw.Show();
-            //mw.button_NG.Visibility = Visibility.Hidden;
-            //mw.button_ContinueG.Visibility = Visibility.Hidden;
-            //mw.button_Exit.Visibility = Visibility.Hidden;
-            //mw.imageForMW.Source = gameBitmaps[idRoom];
         }
 
         public void NewMiniGame()
@@ -91,6 +95,8 @@ namespace WpfApp_v2
         {
             return false;
         }
+
+
 
     }
 }

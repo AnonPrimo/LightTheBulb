@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_v2"
         mc:Ignorable="d"
-        Title="MiniGame1" Height="500" Width="700"
-        WindowStartupLocation="CenterScreen">
+        Title="MiniGame1" Height="700" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Background="Black"
+        MouseDown="Window_MouseDown">
     <Grid>
-        <Canvas Name="canvas" MouseDown="canvas_MouseDown">
-            
+        <Image Name="imageForMG"/>
+        <Canvas Name="canvas" MouseDown="canvas_MouseDown" Margin="0, 0, 0, 0">
+            <Button Name="button1" Height="50" Width="150" Canvas.Left="51" Canvas.Top="33" Click="button1_Click" Visibility="Visible" Panel.ZIndex="99"/>
         </Canvas>
     </Grid>
 </Window>
