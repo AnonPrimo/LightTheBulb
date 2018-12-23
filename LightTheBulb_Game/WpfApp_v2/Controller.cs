@@ -63,21 +63,38 @@ namespace WpfApp_v2
                 gameBitmaps[i].EndInit();
         }
 
-        public void NewGame(Window mw)
+        public void NewGame(MainWindow mw)
         {
+            idRoom = 0;
             MiniGame1 mg = new MiniGame1(gameBitmaps[idRoom]);
             mw.Hide();
             mg.ShowDialog();
+            ++idRoom;
+            ContinueGame(mw);
             mw.Show();
         }
 
-        public void ContinueGame(Window mw)
+        public void ContinueGame(MainWindow mw)
         {
-            MiniGame1 mg = new MiniGame1(gameBitmaps[idRoom]);
-            idRoom++;
-            mw.Hide();
-            mg.ShowDialog();
+            while (idRoom < 5)
+            {
+                MiniGame1 mg = new MiniGame1(gameBitmaps[idRoom]);
+                mw.Hide();
+                mg.ShowDialog();
+                ++idRoom;
+                
+            } 
+
+            MessageBox.Show("You win!");
+
             mw.Show();
+
+        }
+
+        public void ContinueGame(MiniGame1 mg)
+        {
+            mg.image = gameBitmaps[idRoom];
+            idRoom++;
         }
 
         public void NewMiniGame()

@@ -54,10 +54,10 @@ namespace WpfApp_v2
             button_NG.Visibility = Visibility.Hidden;
             button_ContinueG.Visibility = Visibility.Hidden;
             button_Exit.Visibility = Visibility.Hidden;
-
+            
             btnIspr = true;
             Thread.Sleep(500);
-            timer.Start();
+           // timer.Start();
         }
 
         private void button_ContinueG_Click(object sender, RoutedEventArgs e)

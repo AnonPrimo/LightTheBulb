@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -22,16 +23,28 @@ namespace WpfVersion
     public partial class MainWindow : Window
     {
         Energy ball;
-
+        BlurBitmapEffect myBlurEffect;
         public MainWindow()
         {
             InitializeComponent();
             ball = new Energy();
             canvas.Children.Add(ball.Shape);
+            BitmapImage bm = new BitmapImage();
+            bm.BeginInit();
+            bm.UriSource = new Uri("cat.jpg", UriKind.Relative);
+            bm.EndInit();
+            imageForMW.Source = bm;
+            myBlurEffect = new BlurBitmapEffect();
+            myBlurEffect.Radius = 50;
+            imageForMW.BitmapEffect = myBlurEffect;
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            
+            myBlurEffect.Radius = 0;
+            imageForMW.BitmapEffect = myBlurEffect;
+
             switch (e.Key)
             {
                 case Key.Right:

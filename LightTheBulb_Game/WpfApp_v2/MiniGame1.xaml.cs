@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfAnimatedGif;
@@ -22,24 +23,19 @@ namespace WpfApp_v2
     public partial class MiniGame1 : Window
     {
         MiniGame game;
-        BitmapImage image;
-        double x, y;
-        Controller controller;
+        BlurBitmapEffect myBlurEffect;
+        public BitmapImage image;
         int currI;
-        bool btnIspr;
         bool gameWon;
 
         public MiniGame1(BitmapImage b)
         {
-            controller = new Controller();
             InitializeComponent();
             button1.Visibility = Visibility.Hidden;
-            image = b; //new BitmapImage(new Uri("../../cat.jpg", UriKind.Relative));
-            x = this.Width;
-            y = this.Height;
-            this.Width = image.Width;
-            this.Height = image.Height;
-            btnIspr = false;
+            image = b;
+            //double x = this.Height;
+            //image.Height = x;
+            //image.Width = Width;
             currI = 0;
             gameWon = false;
             if (image != null)
@@ -47,12 +43,12 @@ namespace WpfApp_v2
                 game = new MiniGame(image, 2, 2);
                 game.GameCanvas = canvas;
                 game.fieldFill();
-                //game.fieldFilltest();
+
+                myBlurEffect = new BlurBitmapEffect();
+                myBlurEffect.Radius = 50;
+                game.GameCanvas.BitmapEffect = myBlurEffect;
             }
         }
-
-        //public MiniGame1() : this(){
-        //    image = b; }
 
         private void generateFirework(double x, double y)
         {
@@ -71,7 +67,7 @@ namespace WpfApp_v2
 
         }
 
-        private void generateGIF(/*double x, double y*/)
+        private void generateGIF()
         {
             Image imWindow = new Image();
             var im = new BitmapImage();
@@ -80,14 +76,16 @@ namespace WpfApp_v2
             im.EndInit();
             ImageBehavior.SetAnimatedSource(imWindow, im);
             canvas.Children.Add(imWindow);
-            }
+            double www = this.Width;
+            double hhh = this.Height;
+            Canvas.SetLeft(imWindow, www/4);
+            Canvas.SetTop(imWindow, hhh/4);
+        }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             game.DelCan();
             generateGIF();
-            
-            btnIspr = true;
             gameWon = true;
 
         }
@@ -96,22 +94,8 @@ namespace WpfApp_v2
         {
             if (gameWon)
             {
-                canvas.Children.Clear();
-                if (btnIspr && currI < 5)
-                {
-                    imageForMG.Source = controller.storyBitmaps[currI];
-                    currI++;
-                }
-                else
-                {
-                    if (currI == 5)
-                    {
-                        controller.ContinueGame(this);
-                        this.Close();
-                    }
+                    this.Close();
                     currI = 0;
-                    btnIspr = false;
-                }
             }
         }
 
@@ -122,9 +106,6 @@ namespace WpfApp_v2
             {
                 game.StopRotate();
 
-                //this.Width = x;
-                //this.Height = y;
-
                 Point pt = e.GetPosition((UIElement)sender);
                 generateFirework(pt.X, pt.Y);
 
@@ -132,5 +113,11 @@ namespace WpfApp_v2
             }
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Складіть картинку");
+            myBlurEffect.Radius = 0;
+            game.GameCanvas.BitmapEffect = myBlurEffect;
+        }
     }
 }
