@@ -119,5 +119,21 @@ namespace WpfApp_v2
             myBlurEffect.Radius = 0;
             game.GameCanvas.BitmapEffect = myBlurEffect;
         }
+
+        private void RestartButton_Click(object sender, RoutedEventArgs e)
+        {
+            game.Restart();
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow setWind = new SettingsWindow();
+            setWind.ShowDialog();
+        }
+
+        private void InfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Складіть картинку");
+        }
     }
 }
