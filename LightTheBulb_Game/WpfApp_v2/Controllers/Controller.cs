@@ -18,11 +18,10 @@ namespace WpfApp_v2
         public List<MiniGame> gameList;
         public static int idRoom;
 
-
         public Controller()
         {
             gameList = new List<MiniGame>();
-
+            CreateImageGame();
             
             storyBitmaps = new BitmapImage[5];
             gameBitmaps = new BitmapImage[5];
@@ -74,31 +73,40 @@ namespace WpfApp_v2
         //        gameBitmaps[i].EndInit();
         //}
 
-        public void NewGame(MainWindow mw)
+        //public void NewGame(MainWindow mw)
+        //{
+        //    idRoom = 0;
+        //    MiniGame1 mg = new MiniGame1(gameBitmaps[idRoom]);
+        //    mw.Hide();
+        //    mg.ShowDialog();
+        //    ++idRoom;
+        //    ContinueGame(mw);
+        //    mw.Show();
+        //}
+
+        public void NewGame()
         {
             idRoom = 0;
-            MiniGame1 mg = new MiniGame1(gameBitmaps[idRoom]);
-            mw.Hide();
-            mg.ShowDialog();
-            ++idRoom;
-            ContinueGame(mw);
-            mw.Show();
+            //MiniGame1 mg = new MiniGame1(gameBitmaps[idRoom]);
+            //mg.ShowDialog();
+            //++idRoom;
+            //ContinueGame(mw);
         }
 
-        public void ContinueGame(MainWindow mw)
+        public void ContinueGame(/*MainWindow mw*/)
         {
-            while (idRoom < 5)
-            {
-                MiniGame1 mg = new MiniGame1(gameBitmaps[idRoom]);
-                mw.Hide();
-                mg.ShowDialog();
-                ++idRoom;
+            //while (idRoom < 5)
+            //{
+            //    MiniGame1 mg = new MiniGame1(gameBitmaps[idRoom]);
+            //    mw.Hide();
+            //    mg.ShowDialog();
+            //    ++idRoom;
                 
-            } 
+            //} 
 
-            MessageBox.Show("You win!");
+            //MessageBox.Show("You win!");
 
-            mw.Show();
+            //mw.Show();
 
         }
 
