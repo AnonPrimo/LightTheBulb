@@ -104,14 +104,18 @@ namespace WpfApp_v2
                 for (int j = 0; j < h; j++)
                     field[i, j].DisableRect();
             }
-
             return true;
         }
-
-
+        
         public void DelCan()
         {
             GameCanvas.Children.Clear();
+        }
+
+        public void Restart()
+        {
+            DelCan();
+            fieldFill();
         }
     }
 }
