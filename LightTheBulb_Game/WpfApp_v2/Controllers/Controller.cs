@@ -15,53 +15,64 @@ namespace WpfApp_v2
         public BitmapImage startedBitmap;
         public BitmapImage[] storyBitmaps;
         public BitmapImage[] gameBitmaps;
+        public List<MiniGame> gameList;
         public static int idRoom;
+
 
         public Controller()
         {
+            gameList = new List<MiniGame>();
+
+            
             storyBitmaps = new BitmapImage[5];
             gameBitmaps = new BitmapImage[5];
             startedBitmap = new BitmapImage();
             startedBitmap.BeginInit();
             startedBitmap.UriSource = new Uri(@"..\..\Pictures\sheep.jpg", UriKind.Relative);
             startedBitmap.EndInit();
-            storyBitmapInit();
-            gameBitmapInit();
+            //storyBitmapInit();
+            //gameBitmapInit();
             idRoom = 0;
         }
 
-        public void storyBitmapInit()
+        private void CreateImageGame()
         {
-            for (int i = 0; i < 5; i++)
-            {
-                storyBitmaps[i] = new BitmapImage();
-                storyBitmaps[i].BeginInit();
-            }
-            storyBitmaps[0].UriSource = new Uri(@"..\..\Pictures\sheep1.png", UriKind.Relative);
-            storyBitmaps[1].UriSource = new Uri(@"..\..\Pictures\sheep2.png", UriKind.Relative);
-            storyBitmaps[2].UriSource = new Uri(@"..\..\Pictures\sheep3.png", UriKind.Relative);
-            storyBitmaps[3].UriSource = new Uri(@"..\..\Pictures\sheep4.png", UriKind.Relative);
-            storyBitmaps[4].UriSource = new Uri(@"..\..\Pictures\sheep5.png", UriKind.Relative);
-            for(int i = 0; i < 5; ++i)
-                storyBitmaps[i].EndInit();
-
+            Controllers.CreateImage createImage = new Controllers.CreateImage();
+            gameList.Add(createImage);
         }
 
-        public void gameBitmapInit()
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                gameBitmaps[i] = new BitmapImage();
-                gameBitmaps[i].BeginInit();
-            }
-            gameBitmaps[0].UriSource = new Uri(@"..\..\Pictures\sheep1.png", UriKind.Relative);
-            gameBitmaps[1].UriSource = new Uri(@"..\..\Pictures\sheep2.png", UriKind.Relative);
-            gameBitmaps[2].UriSource = new Uri(@"..\..\Pictures\sheep3.png", UriKind.Relative);
-            gameBitmaps[3].UriSource = new Uri(@"..\..\Pictures\sheep4.png", UriKind.Relative);
-            gameBitmaps[4].UriSource = new Uri(@"..\..\Pictures\sheep5.png", UriKind.Relative);
-            for (int i = 0; i < 5; ++i)
-                gameBitmaps[i].EndInit();
-        }
+        //public void storyBitmapInit()
+        //{
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        storyBitmaps[i] = new BitmapImage();
+        //        storyBitmaps[i].BeginInit();
+        //    }
+        //    storyBitmaps[0].UriSource = new Uri(@"..\..\Pictures\sheep1.png", UriKind.Relative);
+        //    storyBitmaps[1].UriSource = new Uri(@"..\..\Pictures\sheep2.png", UriKind.Relative);
+        //    storyBitmaps[2].UriSource = new Uri(@"..\..\Pictures\sheep3.png", UriKind.Relative);
+        //    storyBitmaps[3].UriSource = new Uri(@"..\..\Pictures\sheep4.png", UriKind.Relative);
+        //    storyBitmaps[4].UriSource = new Uri(@"..\..\Pictures\sheep5.png", UriKind.Relative);
+        //    for(int i = 0; i < 5; ++i)
+        //        storyBitmaps[i].EndInit();
+
+        //}
+
+        //public void gameBitmapInit()
+        //{
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        gameBitmaps[i] = new BitmapImage();
+        //        gameBitmaps[i].BeginInit();
+        //    }
+        //    gameBitmaps[0].UriSource = new Uri(@"..\..\Pictures\sheep1.png", UriKind.Relative);
+        //    gameBitmaps[1].UriSource = new Uri(@"..\..\Pictures\sheep2.png", UriKind.Relative);
+        //    gameBitmaps[2].UriSource = new Uri(@"..\..\Pictures\sheep3.png", UriKind.Relative);
+        //    gameBitmaps[3].UriSource = new Uri(@"..\..\Pictures\sheep4.png", UriKind.Relative);
+        //    gameBitmaps[4].UriSource = new Uri(@"..\..\Pictures\sheep5.png", UriKind.Relative);
+        //    for (int i = 0; i < 5; ++i)
+        //        gameBitmaps[i].EndInit();
+        //}
 
         public void NewGame(MainWindow mw)
         {
