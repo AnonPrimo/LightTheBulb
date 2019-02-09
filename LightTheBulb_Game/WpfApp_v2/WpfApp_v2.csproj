@@ -90,7 +90,6 @@
     <Compile Include="MiniGame1.xaml.cs">
       <DependentUpon>MiniGame1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PathPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

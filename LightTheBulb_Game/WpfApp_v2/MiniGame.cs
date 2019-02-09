@@ -46,9 +46,7 @@ namespace WpfApp_v2
             GameCanvas.Children.Add(field[0, 1].Rect);
             System.Windows.Controls.Canvas.SetLeft(field[0, 1].Rect, cwCanvas * 2);
             System.Windows.Controls.Canvas.SetTop(field[0, 1].Rect,chCanvas * 2);
-
             
-
             //GameCanvas.Children.Add(field[0, 0].Rect);
             //System.Windows.Controls.Canvas.SetLeft(field[0, 0].Rect, image.Width/w*0);
             //System.Windows.Controls.Canvas.SetTop(field[0, 0].Rect, image.Height/h*0);

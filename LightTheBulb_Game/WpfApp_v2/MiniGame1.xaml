@@ -21,7 +21,7 @@
             <Button Name="InfoButton" Content="info" Height="50" Width="50" Margin="10" VerticalAlignment="Bottom" Click="InfoButton_Click"/>
         </StackPanel>
         <Image Name="imageForMG"/>
-        <Canvas Name="canvas" MouseDown="canvas_MouseDown" Margin="0, 0, 0, 0">
+        <Canvas Name="canvas" MouseDown="canvas_MouseDown" Margin="0, 0, 0, 0" Grid.Column="1">
             <Button Name="button1" Background="Transparent" Height="700" Width="800" Canvas.Left="0" Canvas.Top="0" Click="button1_Click" Visibility="Visible" Panel.ZIndex="99"/>
         </Canvas>
     </Grid>
