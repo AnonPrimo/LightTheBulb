@@ -17,6 +17,7 @@ namespace WpfApp_v2
         public BitmapImage[] gameBitmaps;
         public static int idRoom;
 
+
         public Controller()
         {
             storyBitmaps = new BitmapImage[5];
