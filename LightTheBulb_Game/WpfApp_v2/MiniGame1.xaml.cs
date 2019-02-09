@@ -131,7 +131,7 @@ namespace WpfApp_v2
 
         private void InfoButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Складіть картинку");
+            MessageBox.Show(game.GetRules());
         }
     }
 }
