@@ -31,7 +31,6 @@ namespace WpfApp_v2
         public MiniGame1(BitmapImage b)
         {
             InitializeComponent();
-            button1.Visibility = Visibility.Hidden;
             image = b;
             //double x = this.Height;
             //image.Height = x;
@@ -108,8 +107,7 @@ namespace WpfApp_v2
 
                 Point pt = e.GetPosition((UIElement)sender);
                 generateFirework(pt.X, pt.Y);
-
-                button1.Visibility = Visibility.Visible;
+         
             }
         }
 
