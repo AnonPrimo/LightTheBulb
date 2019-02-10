@@ -49,6 +49,7 @@ namespace WpfApp_v2
 
         }
 
+        //start new game
         private void button_NG_Click(object sender, RoutedEventArgs e)
         {
             button_NG.Visibility = Visibility.Hidden;
@@ -60,9 +61,10 @@ namespace WpfApp_v2
            // timer.Start();
         }
 
+        //continue old game
         private void button_ContinueG_Click(object sender, RoutedEventArgs e)
         {
-            controller.ContinueGame(this);
+            //controller.ContinueGame(this);
         }
         
 
@@ -81,8 +83,13 @@ namespace WpfApp_v2
             }
             else
             {
-                if(currI == 5)
-                    controller.NewGame(this);
+                if (currI == 5)
+                {
+                    //controller.NewGame(this);
+                    this.Hide();
+                    controller.NewGame();
+                    this.Show();
+                }
                 button_NG.Visibility = Visibility.Visible;
                 button_ContinueG.Visibility = Visibility.Visible;
                 button_Exit.Visibility = Visibility.Visible;
